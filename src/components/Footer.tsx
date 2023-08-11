@@ -17,7 +17,7 @@ const Footer = () => {
 					<a className="link link-hover">Cookie policy</a>
 				</div>
 			</footer>
-			<h2 className="text-center mt-5">Book list redux practice app</h2>
+			<h2 className="text-center my-5">Book list redux practice app</h2>
 		</div>
 	);
 };
