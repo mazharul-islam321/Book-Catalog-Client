@@ -1,4 +1,9 @@
+import { loginUser } from "../redux/features/user/userSlice";
+import { useAppDispatch } from "../redux/hook";
+
 const Login = () => {
+	const dispatch = useAppDispatch();
+
 	const handleLogIn = (event: {
 		preventDefault: () => void;
 		target: any;
@@ -7,8 +12,9 @@ const Login = () => {
 
 		const form = event.target;
 		const email = form.email.value;
-		const pasword = form.password.value;
-		console.log("object->>", email, pasword);
+		const password = form.password.value;
+		console.log("object->>", email, password);
+		dispatch(loginUser({ email: email, password: password }));
 	};
 
 	return (
