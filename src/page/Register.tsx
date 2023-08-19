@@ -1,8 +1,12 @@
+import { useEffect } from "react";
 import { createUser } from "../redux/features/user/userSlice";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+	const { user, isLoading } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const handleRegister = (event: {
 		preventDefault: () => void;
@@ -19,6 +23,13 @@ const Register = () => {
 		// createUser({ email: email, password: pasword });
 		dispatch(createUser({ email: email, password: pasword }));
 	};
+
+	useEffect(() => {
+		if (user.email && !isLoading) {
+			navigate("/");
+		}
+	}, [user.email, isLoading]);
+
 	return (
 		<div className="hero min-h-screen bg-base-200">
 			<div className="hero-content flex-col">

@@ -1,6 +1,23 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import { setUser } from "../redux/features/user/userSlice";
 
 const Header = () => {
+	const { user } = useAppSelector((state) => state.user);
+
+	const dispatch = useAppDispatch();
+
+	const handleLogOut = () => {
+		console.log("log out");
+
+		signOut(auth).then(() => {
+			// Sign-out successful.
+			dispatch(setUser(null));
+		});
+	};
+
 	return (
 		<div className="navbar bg-base-100">
 			<div className="navbar-start">
@@ -51,13 +68,21 @@ const Header = () => {
 				</ul>
 			</div>
 			<div className="navbar-end">
-				<Link to="/login" className="btn mr-4">
-					Sign In
-				</Link>
+				{user.email ? (
+					<div onClick={handleLogOut} className="btn">
+						Log-Out
+					</div>
+				) : (
+					<>
+						<Link to="/login" className="btn mr-4">
+							Sign In
+						</Link>
 
-				<Link to="/signup" className="btn">
-					Sign Up
-				</Link>
+						<Link to="/signup" className="btn">
+							Sign Up
+						</Link>
+					</>
+				)}
 			</div>
 		</div>
 	);

@@ -1,8 +1,12 @@
+import { useEffect } from "react";
 import { loginUser } from "../redux/features/user/userSlice";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+	const { user, isLoading } = useAppSelector((state) => state.user);
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const handleLogIn = (event: {
 		preventDefault: () => void;
@@ -16,6 +20,11 @@ const Login = () => {
 		console.log("object->>", email, password);
 		dispatch(loginUser({ email: email, password: password }));
 	};
+	useEffect(() => {
+		if (user.email && !isLoading) {
+			navigate("/");
+		}
+	}, [user.email, isLoading]);
 
 	return (
 		<div className="hero min-h-screen bg-base-200">
