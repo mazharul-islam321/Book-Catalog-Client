@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { loginUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
@@ -10,6 +11,7 @@ const Login = () => {
 
 	const handleLogIn = (event: {
 		preventDefault: () => void;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		target: any;
 	}) => {
 		event.preventDefault();
@@ -20,6 +22,7 @@ const Login = () => {
 		console.log("object->>", email, password);
 		dispatch(loginUser({ email: email, password: password }));
 	};
+
 	useEffect(() => {
 		if (user.email && !isLoading) {
 			navigate("/");

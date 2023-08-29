@@ -1,16 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counter/counterSlice";
-// import logger from "./middleware/logger";
-import logger from "redux-logger";
 import userReducer from "./features/user/userSlice";
+import { api } from "./api/apiSlice";
 
 const store = configureStore({
 	reducer: {
 		counter: counterReducer,
 		user: userReducer,
+		[api.reducerPath]: api.reducer,
 	},
 	// devTools: true
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(api.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

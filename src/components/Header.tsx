@@ -49,6 +49,10 @@ const Header = () => {
 						<li>
 							<Link to="/allBooks">All Books</Link>
 						</li>
+
+						<li>
+							<Link to="/allBooks">Add Book</Link>
+						</li>
 					</ul>
 				</div>
 
@@ -64,6 +68,10 @@ const Header = () => {
 
 					<li>
 						<Link to="/allBooks">All Books</Link>
+					</li>
+
+					<li>
+						<Link to="/addBook">Add Book</Link>
 					</li>
 				</ul>
 			</div>
