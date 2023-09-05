@@ -1,4 +1,9 @@
+import { useAddBookMutation } from "../redux/features/book/bookApi";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AddBook = () => {
+	const [addBook] = useAddBookMutation();
 	const handleAddBook = (event: {
 		preventDefault: () => void;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,7 +16,20 @@ const AddBook = () => {
 		const author = form.author.value;
 		const genre = form.genre.value;
 		const date = form.date.value;
-		console.log("object->>", title, author, genre, date);
+
+		const addBookData = {
+			title: title,
+			author: author,
+			genre: genre,
+			publicationDate: date,
+		};
+
+		console.log("object->>", addBookData);
+
+		addBook(addBookData);
+		toast.success("Book saved successfully");
+
+		form.reset();
 	};
 
 	return (

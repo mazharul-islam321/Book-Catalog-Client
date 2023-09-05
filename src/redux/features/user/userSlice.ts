@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 
-interface IUserState {
+export interface IUserState {
 	user: {
 		email: string | null;
 	};
