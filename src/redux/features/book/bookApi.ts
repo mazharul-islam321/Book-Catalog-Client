@@ -38,7 +38,23 @@ const bookApi = api.injectEndpoints({
 			},
 			providesTags: ["books"],
 		}),
+
+		getSingleBook: builder.query({
+			query: (id) => `/books/${id}`,
+			transformResponse(
+				baseQueryReturnValue: { data: IBook },
+				_meta,
+				_arg
+			) {
+				return baseQueryReturnValue.data;
+			},
+			providesTags: ["books"],
+		}),
 	}),
 });
 
-export const { useAddBookMutation, useGetAllBooksQuery } = bookApi;
+export const {
+	useAddBookMutation,
+	useGetAllBooksQuery,
+	useGetSingleBookQuery,
+} = bookApi;

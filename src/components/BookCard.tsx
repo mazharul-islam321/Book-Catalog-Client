@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IBook } from "../redux/features/book/bookApi";
 
 type Props = {
@@ -6,6 +7,7 @@ type Props = {
 
 const BookCard = (props: Props) => {
 	const { book } = props;
+
 	return (
 		<div className="card w-72 m-4 bg-base-100 shadow-xl">
 			<figure>
@@ -21,9 +23,11 @@ const BookCard = (props: Props) => {
 				<p className="text-left">Author: {book.author}</p>
 				<p className="text-left">Genre: {book.genre}</p>
 				<p className="text-left">Published: {book.publicationDate}</p>
-				<div className="card-actions justify-end">
-					<button className="btn btn-primary">details</button>
-				</div>
+				<Link to={`/books/${book.id}`}>
+					<div className="card-actions justify-end">
+						<button className="btn btn-primary">details</button>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);

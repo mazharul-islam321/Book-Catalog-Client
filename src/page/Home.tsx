@@ -6,13 +6,22 @@ const Home = () => {
 	const [searchValue, setSearchValue] = useState("");
 	const [selectedYear, setSelectedYear] = useState("");
 	const [selectedGenre, setSelectedGenre] = useState("");
+
 	const { data, isLoading, refetch } = useGetAllBooksQuery({
 		searchTerm: searchValue,
 		genre: selectedGenre,
 		year: selectedYear,
 	});
 
-	if (isLoading) return <h2>Loading. .. ...</h2>;
+	let genreValue: string[] = [];
+
+	data?.forEach((genre) => {
+		if (genreValue.indexOf(genre.genre) === -1) {
+			genreValue.push(genre.genre);
+		}
+	});
+
+	if (isLoading) return <h2>Loading...</h2>;
 
 	return (
 		<div className="text-center py-10">
@@ -21,27 +30,33 @@ const Home = () => {
 					type="text"
 					placeholder="search"
 					className="input input-bordered w-full max-w-xs"
+					value={searchValue}
 					onChange={(e) => {
 						setSearchValue(e.target.value);
 					}}
 				/>
+
 				<input
 					type="text"
 					placeholder="year"
 					className="input input-bordered w-full max-w-xs mx-4"
+					value={selectedYear}
 					onChange={(e) => {
 						setSelectedYear(e.target.value);
 					}}
 				/>
+
 				<select
 					onChange={(e) => setSelectedGenre(e.target.value)}
 					className="select select-bordered w-full max-w-xs"
+					value={selectedGenre}
 				>
-					<option selected>all</option>
-					<option>Fantasy</option>
-					<option>Fiction</option>
-					<option>others</option>
+					<option value="">all</option>
+					{genreValue?.map((genre) => {
+						return <option value={genre}>{genre}</option>;
+					})}
 				</select>
+
 				<button
 					onClick={refetch}
 					className="btn btn-outline ml-4 btn-success"
