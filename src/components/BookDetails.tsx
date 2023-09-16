@@ -1,10 +1,21 @@
 import { useParams } from "react-router-dom";
-import { useGetSingleBookQuery } from "../redux/features/book/bookApi";
+import {
+	useDeleteBookMutation,
+	useGetSingleBookQuery,
+} from "../redux/features/book/bookApi";
 import Review from "./Review";
 
 const BookDetails = () => {
 	const { id: bookId } = useParams();
 	const { data } = useGetSingleBookQuery(bookId);
+	const [deleteBook] = useDeleteBookMutation();
+
+	const deleteHandler = () => {
+		const confDelete = confirm("do you wnat to delete?");
+		if (confDelete) {
+			deleteBook({ id: bookId! });
+		}
+	};
 
 	return (
 		<>
@@ -27,7 +38,12 @@ const BookDetails = () => {
 
 					<div className="flex justify-end">
 						<div>
-							<button className="btn btn-primary">Delete</button>
+							<button
+								onClick={deleteHandler}
+								className="btn btn-primary"
+							>
+								Delete
+							</button>
 						</div>
 						<div className="ml-4">
 							<button className="btn btn-primary">Edit</button>
