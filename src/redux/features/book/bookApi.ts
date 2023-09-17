@@ -58,6 +58,35 @@ const bookApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ["books"],
 		}),
+
+		addReview: builder.mutation<
+			IBook,
+			{
+				id: string;
+				data: {
+					user: string;
+					comment: string;
+				};
+			}
+		>({
+			query: ({ id, data }) => ({
+				url: `/books/${id}/review`,
+				method: "POST",
+				body: data,
+			}),
+			invalidatesTags: ["books"],
+		}),
+
+		editBook: builder.mutation<IBook, { id: string; data: Partial<IBook> }>(
+			{
+				query: ({ id, data }) => ({
+					url: `/books/${id}`,
+					method: "PATCH",
+					body: data,
+				}),
+				invalidatesTags: ["books"],
+			}
+		),
 	}),
 });
 
@@ -66,4 +95,6 @@ export const {
 	useGetAllBooksQuery,
 	useGetSingleBookQuery,
 	useDeleteBookMutation,
+	useAddReviewMutation,
+	useEditBookMutation,
 } = bookApi;

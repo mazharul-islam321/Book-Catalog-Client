@@ -9,6 +9,7 @@ export interface IUserState {
 	user: {
 		email: string | null;
 	};
+	id: string;
 	isLoading: boolean;
 	isError: boolean;
 	error: string | null;
@@ -23,6 +24,7 @@ const initialState: IUserState = {
 	user: {
 		email: null,
 	},
+	id: "",
 	isLoading: false,
 	isError: false,
 	error: null,

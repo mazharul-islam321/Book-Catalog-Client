@@ -12,7 +12,6 @@ const Review = (props: Props) => {
 
 	return (
 		<div className="card border-light mb-3">
-			{/* <div className="card-header">User: {review.user?.email}</div> */}
 			<div className="card-body">
 				<p className="card-text">{review?.comment}</p>
 			</div>

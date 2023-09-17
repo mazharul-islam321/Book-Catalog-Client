@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
 	useDeleteBookMutation,
 	useGetSingleBookQuery,
 } from "../redux/features/book/bookApi";
 import Review from "./Review";
+import AddReview from "./AddReview";
 
 const BookDetails = () => {
 	const { id: bookId } = useParams();
@@ -45,9 +46,13 @@ const BookDetails = () => {
 								Delete
 							</button>
 						</div>
-						<div className="ml-4">
-							<button className="btn btn-primary">Edit</button>
-						</div>
+						<Link to={`/addBook/${bookId}/edit`}>
+							<div className="ml-4">
+								<button className="btn btn-primary">
+									Edit
+								</button>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -63,6 +68,15 @@ const BookDetails = () => {
 					</div>
 				</div>
 			</div>
+
+			<div className="flex justify-center mb-10">
+				<label htmlFor="my_modal_6" className="btn btn-primary">
+					Add Review
+				</label>
+			</div>
+
+			{/* add review component */}
+			<AddReview />
 		</>
 	);
 };
