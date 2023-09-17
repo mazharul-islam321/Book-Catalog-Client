@@ -4,10 +4,10 @@ import Home from "../page/Home";
 import Login from "../page/Login";
 import NotFound from "../page/NotFound";
 import Register from "../page/Register";
-import AllBooks from "../components/AllBooks";
 import AddBook from "../components/AddBook";
 import BookDetails from "../components/BookDetails";
 import EditBook from "../components/EditBook";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
 	{
@@ -23,20 +23,24 @@ const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
-				path: "/allBooks",
-				element: <AllBooks />,
-			},
-			{
 				path: "/books/:id",
 				element: <BookDetails />,
 			},
 			{
 				path: "/addBook",
-				element: <AddBook />,
+				element: (
+					<PrivateRoute>
+						<AddBook />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/addBook/:id/edit",
-				element: <EditBook />,
+				element: (
+					<PrivateRoute>
+						<EditBook />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/login",

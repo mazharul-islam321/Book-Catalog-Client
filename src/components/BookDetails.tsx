@@ -18,6 +18,8 @@ const BookDetails = () => {
 		}
 	};
 
+	console.log("review--->>", data);
+
 	return (
 		<>
 			<div className="card w-1/3 mx-auto m-4 bg-base-100 shadow-xl">
@@ -59,14 +61,10 @@ const BookDetails = () => {
 
 			<h2 className="text-center font-bold my-10">All Reviews</h2>
 
-			<div className="grid grid-cols-3 gap-4 px-44 pb-16">
-				<div className="card w-96 py-8 bg-base-100 shadow-xl">
-					<div className="card-body">
-						{data?.reviews?.map((review) => (
-							<Review key={review?.comment} review={review} />
-						))}
-					</div>
-				</div>
+			<div className="grid grid-cols-3 gap-4 px-20 pb-16">
+				{data?.reviews?.map((review) => (
+					<Review key={review?.comment} review={review} />
+				))}
 			</div>
 
 			<div className="flex justify-center mb-10">

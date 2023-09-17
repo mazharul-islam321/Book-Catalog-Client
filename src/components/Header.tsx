@@ -47,10 +47,6 @@ const Header = () => {
 						</li>
 
 						<li>
-							<Link to="/allBooks">All Books</Link>
-						</li>
-
-						<li>
 							<Link to="/allBooks">Add Book</Link>
 						</li>
 					</ul>
@@ -64,10 +60,6 @@ const Header = () => {
 				<ul className="menu menu-horizontal px-1">
 					<li>
 						<Link to="/home">Home</Link>
-					</li>
-
-					<li>
-						<Link to="/allBooks">All Books</Link>
 					</li>
 
 					<li>

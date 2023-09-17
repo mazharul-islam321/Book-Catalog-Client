@@ -1,18 +1,12 @@
-import { IUserState } from "../redux/features/user/userSlice";
-
-type Props = {
-	review: {
-		user: IUserState;
-		comment: string;
-	};
-};
-
-const Review = (props: Props) => {
+const Review = (props: any) => {
 	const { review } = props;
 
+	console.log("user", review.user);
+
 	return (
-		<div className="card border-light mb-3">
+		<div className="card w-96 py-8 bg-base-100 shadow-xl mx-10">
 			<div className="card-body">
+				<h2>User: {review.user}</h2>
 				<p className="card-text">{review?.comment}</p>
 			</div>
 		</div>

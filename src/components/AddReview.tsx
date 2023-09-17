@@ -15,7 +15,7 @@ const AddReview = () => {
 		try {
 			const options = {
 				id: id!,
-				data: { user: user.id, comment: comment },
+				data: { user: user.user.email, comment: comment },
 			};
 
 			await addReview(options).unwrap();
@@ -46,9 +46,13 @@ const AddReview = () => {
 						/>
 					</div>
 
-					<button onClick={saveHandler} className="btn btn-primary">
+					<label
+						htmlFor="my_modal_6"
+						onClick={saveHandler}
+						className="btn btn-primary"
+					>
 						Add Review
-					</button>
+					</label>
 
 					<div className="modal-action">
 						<label htmlFor="my_modal_6" className="btn">

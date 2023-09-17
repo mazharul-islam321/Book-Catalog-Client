@@ -64,7 +64,7 @@ const bookApi = api.injectEndpoints({
 			{
 				id: string;
 				data: {
-					user: string;
+					user: string | null;
 					comment: string;
 				};
 			}
